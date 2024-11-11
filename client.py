@@ -18,9 +18,14 @@ def escutar_mensagens():
         try:
             msg = socket_client.recv(1024).decode()
             print(f"\n> {msg} \n")
+        except socket.timeout:
+            print("\nTimeout de conexão")
+            break
         except:
             print("\nErro ao receber mensagem. ")
             break
+    print("\nFinalizando conexão... ")
+    socket_client.close()
 
 thread_escuta = threading.Thread(target=escutar_mensagens, daemon=True)
 thread_escuta.start()
