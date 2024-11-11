@@ -1,43 +1,40 @@
 import socket
 import threading
+from variaveis import *
 
-# Define o endereço e porta do servidor
-HOST = '127.0.0.1'
-PORT = 7000
-ADDR = (HOST, PORT)
 
 # Define um dicionário com o IP e Porta dos clientes
 clientes = {}
 
 # Função para gerenciar cada cliente em uma thread
-def handle_client(con, nome):
-    print(f"Cliente {nome} conectado.")
+def handle_client(conexao, nome):
+    print(f"\n{nome} conectado.")
+
+    if(nome != nome_admin):
+        conexao.send("Olá, tudo bem? Bem vindo ao atendimento da DrogaLaugh.".encode())
+        conexao.send("Qual a sua dúvida? Estou aqui para ajudar.".encode())
+
+        if(nome_admin in clientes.keys()):
+            clientes[nome_admin].send(f"{nome} se conectou".encode())
 
     try:
         while True:
-            dados = con.recv(1024).decode()
-            if(not dados):
+            mensagem = conexao.recv(1024).decode()
+            if(not mensagem):
                 break
-
-            if(':' not in dados):
-                con.send("Formato inválido. Use 'destino:mensagem'.".encode())
-                continue
             
-            destino, mensagem = dados.split(':', 1)
+            destino = [user for user in clientes.items() if user[0] != nome]
 
-            # Envia a mensagem ao destino
-            if(destino in clientes):
-                clientes[destino][0].send(f"Mensagem de {nome}: {mensagem}".encode())
-                con.send("Mensagem enviada com sucesso.".encode())
-            else:
-                con.send("Destinatário não encontrado.".encode())
-
-            print(f"Mensagem de {nome} para {destino}: {mensagem}")
+            if(len(destino) > 0):
+                destino[0][1].send(mensagem.encode())
+                print(f"\n{nome} -> {destino[0][0]}: {mensagem}")
 
     finally:
         del clientes[nome]
-        con.close()
-        print(f"Cliente {nome} desconectado.")
+        conexao.close()
+        print(f"\n{nome} desconectado.")
+        if(nome != nome_admin and nome_admin in clientes.keys()):
+            clientes[nome_admin].send(f"{nome} desconectou".encode())
 
 # Função para iniciar o servidor
 def iniciar_servidor():
@@ -47,10 +44,10 @@ def iniciar_servidor():
     print(f"Servidor rodando na porta {PORT}")
 
     while True:
-        con, endereco = server_socket.accept()
-        nome_usuario = con.recv(1024).decode()
-        clientes[nome_usuario] = (con, endereco)
-        thread = threading.Thread(target=handle_client, args=(con, nome_usuario))
+        client_socket, _ = server_socket.accept()
+        nome_usuario = client_socket.recv(1024).decode()
+        clientes[nome_usuario] = client_socket
+        thread = threading.Thread(target=handle_client, args=(client_socket, nome_usuario))
         thread.start()
 
 iniciar_servidor()
