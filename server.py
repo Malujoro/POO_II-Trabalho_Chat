@@ -3,8 +3,8 @@ import threading
 from variaveis import *
 
 
-# Função para gerenciar cada cliente em uma thread
-def handle_client(usuarios, conexao, nome):
+# Função para encaminhar as mensagens entre o funcionário e o cliente
+def encaminhar_mensagem(usuarios, conexao, nome):
     print(f"\n{nome} conectado.")
 
     if(nome != nome_admin):
@@ -45,7 +45,7 @@ def iniciar_servidor(usuarios = {}):
             client_socket, _ = server_socket.accept()
             nome_usuario = client_socket.recv(1024).decode()
             usuarios[nome_usuario] = client_socket
-            thread = threading.Thread(target=handle_client, args=(usuarios, client_socket, nome_usuario), daemon=True)
+            thread = threading.Thread(target=encaminhar_mensagem, args=(usuarios, client_socket, nome_usuario), daemon=True)
             thread.start()
         except KeyboardInterrupt:
             break

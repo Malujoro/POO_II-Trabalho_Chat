@@ -5,3 +5,4 @@ ADDR = (HOST, PORT)
 
 nome_admin = "funcionario"
 nome_cliente = "usuario"
+total_usuarios = 2
