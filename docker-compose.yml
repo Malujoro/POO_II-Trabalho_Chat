@@ -1,0 +1,57 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: postgres_container
+    restart: always
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: mydatabase
+    ports:
+      - "5410:5432"
+
+  pgadmin:
+    image: 'dpage/pgadmin4:latest'
+    environment:
+      - 'PGADMIN_DEFAULT_EMAIL=poo@gmail.com'
+      - 'PGADMIN_DEFAULT_PASSWORD=admin'
+    ports:
+      - "5050:80"
+    depends_on:
+      - postgres
+
+
+  redis:
+    image: redis:latest
+    container_name: redis_container
+    restart: always
+    ports:
+      - "6380:6379"
+    volumes:
+      - redis_data:/data
+
+
+  worker:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: worker_container
+    restart: always
+    depends_on:
+      - postgres
+      - redis
+    deploy:
+      resources:
+        limits:
+          cpus: "2"
+          memory: "2GB"
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: mydatabase
+      POSTGRES_HOST: postgres
+      REDIS_HOST: redis
+
+volumes:
+  postgres_data:
+  redis_data:

@@ -111,5 +111,4 @@ class TestServer:
 
             mock_print.assert_any_call("\nFinalizando servidor...")
 
-        # Verifica se o socket foi fechado
         server_socket.close.assert_called_once()
