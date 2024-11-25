@@ -1,15 +1,31 @@
 import redis
 from datetime import datetime
+
 class RedisDB:
 
+    """
+    Classe para gerenciar a interação com um banco de dados Redis.
+    Permite criar, listar e excluir mensagens, limpar o banco e fechar a conexão.
+    """
+
     def __init__(self, host='localhost', port=6380, decode_responses=True):
+        """
+        Inicializa a instância do RedisDB e estabelece uma conexão com o Redis.
+
+        :param host: Endereço do servidor Redis (padrão: 'localhost').
+        :param port: Porta do servidor Redis (padrão: 6380).
+        :param decode_responses: Define se as respostas do Redis devem ser decodificadas como strings (padrão: True).
+        """
         self._host = host
         self._port = port
         self._decode_responses = decode_responses
-        self._client = None
+        self._client = None 
         self.connect()
 
     def connect(self):
+        """
+        Estabelece uma conexão com o servidor Redis.
+        """
         if(self._client is None):
             self._client = redis.Redis(
                 host=self._host,
@@ -18,6 +34,13 @@ class RedisDB:
             )
 
     def create_message(self, role: str, message: str):
+        """
+        Cria e armazena uma mensagem no Redis.
+
+        :param role: Papel associado à mensagem (ex.: 'usuario', 'funcionario').
+        :param message: Conteúdo da mensagem.
+        """
+        
         timestamp = datetime.now().isoformat()
         key = f"message:{role}:{timestamp}"
         self._client.hset(key, mapping={
@@ -27,6 +50,11 @@ class RedisDB:
         })
     
     def list_messages(self):
+        """
+        Lista todas as mensagens armazenadas no Redis.
+
+        :return: Lista de dicionários contendo as mensagens.
+        """
         messages = []
         cursor = 0
         pattern = "message:*"
@@ -42,16 +70,31 @@ class RedisDB:
         return messages
     
     def delete_message(self, key: str):
+        """
+        Exclui uma mensagem específica do Redis.
+
+        :param key: A chave da mensagem a ser excluída.
+        """
         self._client.delete(key)
 
     def clear_all_data(self):
+        """
+        Remove todos os dados armazenados no Redis.
+        """
         self._client.flushdb()
 
     def close(self):
+        """
+        Fecha a conexão com o servidor Redis.
+        """
         self._client.close()
 
 
 if(__name__ == "__main__"):
+    """
+    Teste de funcionalidades. 
+    Exibe todas as mensagens do banco.
+    """
     redis = RedisDB()
 
     # redis.create_message("usuario", "mensagem1")

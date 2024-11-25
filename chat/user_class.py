@@ -3,6 +3,9 @@ import threading
 from variaveis import *
 
 class User:
+    """
+    
+    """
 
     __slots__ = ["_nome", "_timeout", "_endereco", "_socket_user"]
 

@@ -1,3 +1,6 @@
+""" 
+Importa todas as definições do módulo `user_class` 
+"""
 from user_class import *
 
 if(__name__ == "__main__"):

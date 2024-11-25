@@ -1,6 +1,6 @@
 import os
 from postgresSQL import *
-from redis_ex import *
+from bd.redis import *
 
 def connect_postgress():
     try:

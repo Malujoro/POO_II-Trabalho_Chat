@@ -5,7 +5,7 @@ Importações:
 2. Incluir a função randint para criar números aleatórios.
 3. Importa as variáveis 'nome_cliente' e 'nome_admin'.
 """
-from bd.redis_ex import *
+from bd.redis import *
 from random import randint
 from chat.variaveis import *
 
@@ -25,7 +25,7 @@ if __name__ == "__main__":
 
     Inicia um loop de 1 milhão de vezes.
     Seleciona um usuário aleatório da lista de usuários, sendo 0 para cliente e 1 para funcionário.
-    Chama a função do arquivo redis_ex.py.
+    Chama a função do arquivo redis.py.
     """
-    for i in range(10000):
+    for i in range(1000000):
         redis.create_message(usuarios[randint(0, 1)], f"mensagem{i+1}")
