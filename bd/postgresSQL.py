@@ -18,7 +18,7 @@ class PostgressDB:
 
     Atributos (privados):
     
-    Inicializa a classe com os parâmentros de conexão do banco de dados, com dados pré definidos caso não seja informado:
+    Inicializa a classe com os parâmetros de conexão do banco de dados, com dados pré definidos caso não seja informado:
     dbname (str): nome do banco (padrão: 'mydatabase');
     user (str): nome do usuário (padrão: 'user');
     password (str): senha do usuário (padrão: 'password');
@@ -30,7 +30,7 @@ class PostgressDB:
     connect: a conexão com o banco de dados é estabelecida.
     """
     
-    def __init__(self, dbname='mydatabase', user='user', password='password', host='localhost', port='5410'):
+    def __init__(self, dbname: str ='mydatabase', user: str ='user', password: str ='password', host: str ='localhost', port: str ='5410') -> None:
         self._dbname = dbname
         self._user = user
         self._password = password
@@ -48,7 +48,7 @@ class PostgressDB:
     Inicializa o cursor para executar os comandos SQL.
     Chama o método 'create_table' para criar a tabela caso não exista.
     """
-    def connect(self):
+    def connect(self) -> None:
         if(self._conn == None):
             self._conn = psycopg2.connect(
                 dbname = self._dbname,
@@ -67,7 +67,7 @@ class PostgressDB:
     Cria a tabela com as colunas: id, role, message e date.
     O comando 'self._conn.commit()' é usado para salvar as alterações.
     """
-    def create_table(self):
+    def create_table(self) -> None:
         self._cursor.execute("""
             CREATE TABLE IF NOT EXISTS messages (
                 id SERIAL PRIMARY KEY,
@@ -79,7 +79,7 @@ class PostgressDB:
         self._conn.commit()
 
 
-    def insert(self, dados: list[tuple[str, str]]):
+    def insert(self, dados: list[tuple[str, str]]) -> None:
         if(dados):
             self._cursor.executemany("""
                 INSERT INTO messages (role, message)
@@ -88,13 +88,13 @@ class PostgressDB:
             self._conn.commit()
 
 
-    def select_all(self):
+    def select_all(self) -> None:
         self._cursor.execute("SELECT * FROM messages")
         for row in self._cursor.fetchall():
             print(row)
 
         
-    def disconnect(self):
+    def disconnect(self) -> None:
         self._cursor.close()
         self._conn.close()
 

@@ -8,13 +8,13 @@ class RedisDB:
     Permite criar, listar e excluir mensagens, limpar o banco e fechar a conexão.
     """
 
-    def __init__(self, host='localhost', port=6380, decode_responses=True):
+    def __init__(self, host: str = 'localhost', port: int = 6380, decode_responses: bool = True) -> None:
         """
         Inicializa a instância do RedisDB e estabelece uma conexão com o Redis.
 
-        :param host: Endereço do servidor Redis (padrão: 'localhost').
-        :param port: Porta do servidor Redis (padrão: 6380).
-        :param decode_responses: Define se as respostas do Redis devem ser decodificadas como strings (padrão: True).
+        host (str): Endereço do servidor Redis (padrão: 'localhost').
+        port (str): Porta do servidor Redis (padrão: 6380).
+        decode_responses (str): Define se as respostas do Redis devem ser decodificadas como strings (padrão: True).
         """
         self._host = host
         self._port = port
@@ -22,7 +22,8 @@ class RedisDB:
         self._client = None 
         self.connect()
 
-    def connect(self):
+
+    def connect(self) -> None:
         """
         Estabelece uma conexão com o servidor Redis.
         """
@@ -33,12 +34,13 @@ class RedisDB:
                 decode_responses=self._decode_responses
             )
 
-    def create_message(self, role: str, message: str):
+
+    def create_message(self, role: str, message: str) -> None:
         """
         Cria e armazena uma mensagem no Redis.
 
-        :param role: Papel associado à mensagem (ex.: 'usuario', 'funcionario').
-        :param message: Conteúdo da mensagem.
+        role (str): Papel associado à mensagem (ex.: 'usuario', 'funcionario').
+        message (str): Conteúdo da mensagem.
         """
         
         timestamp = datetime.now().isoformat()
@@ -49,11 +51,12 @@ class RedisDB:
             'timestamp': timestamp
         })
     
-    def list_messages(self):
+
+    def list_messages(self) -> list[dict[str : str]]:
         """
         Lista todas as mensagens armazenadas no Redis.
 
-        :return: Lista de dicionários contendo as mensagens.
+        Retorno: Lista de dicionários contendo as mensagens.
         """
         messages = []
         cursor = 0
@@ -69,21 +72,24 @@ class RedisDB:
 
         return messages
     
-    def delete_message(self, key: str):
+
+    def delete_message(self, key: str) -> None:
         """
         Exclui uma mensagem específica do Redis.
 
-        :param key: A chave da mensagem a ser excluída.
+        key (str): A chave da mensagem a ser excluída.
         """
         self._client.delete(key)
 
-    def clear_all_data(self):
+
+    def clear_all_data(self) -> None:
         """
         Remove todos os dados armazenados no Redis.
         """
         self._client.flushdb()
 
-    def close(self):
+
+    def close(self) -> None:
         """
         Fecha a conexão com o servidor Redis.
         """

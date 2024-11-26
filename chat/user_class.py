@@ -9,7 +9,7 @@ class User:
 
     __slots__ = ["_nome", "_timeout", "_endereco", "_socket_user"]
 
-    def __init__(self, nome: str, timeout: int = 0, endereco: tuple[int, int] = ADDR):
+    def __init__(self, nome: str, timeout: int = 0, endereco: tuple[int, int] = ADDR) -> None:
         self._nome = nome
         self._timeout = timeout
         self._endereco = endereco
@@ -25,7 +25,7 @@ class User:
         return self._nome
     
     @nome.setter
-    def nome(self, nome: str):
+    def nome(self, nome: str) -> None:
         self._nome = nome
 
     @property
@@ -33,7 +33,7 @@ class User:
         return self._timeout
     
     @timeout.setter
-    def timeout(self, timeout: int):
+    def timeout(self, timeout: int) -> None:
         self._timeout = timeout
 
     @property
@@ -41,7 +41,7 @@ class User:
         return self._endereco
     
     @endereco.setter
-    def endereco(self, endereco: tuple[int, int]):
+    def endereco(self, endereco: tuple[int, int]) -> None:
         self._endereco = endereco
 
     @property
@@ -49,10 +49,10 @@ class User:
         return self._socket_user
     
     @socket_user.setter
-    def socket_user(self, socket_user: socket.socket):
+    def socket_user(self, socket_user: socket.socket) -> None:
         self._socket_user = socket_user
 
-    def escutar_mensagens(self):
+    def escutar_mensagens(self) -> None:
         while True:
             try:
                 msg = self._socket_user.recv(1024).decode()
@@ -67,7 +67,7 @@ class User:
         self._socket_user.close()
 
 
-    def iniciar(self):
+    def iniciar(self) -> None:
         thread_escuta = threading.Thread(target=self.escutar_mensagens, daemon=True)
         thread_escuta.start()
         while True:

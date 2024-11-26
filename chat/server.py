@@ -4,7 +4,7 @@ from variaveis import *
 
 
 # Função para encaminhar as mensagens entre o funcionário e o cliente
-def encaminhar_mensagem(usuarios, conexao, nome):
+def encaminhar_mensagem(usuarios: dict[str : socket.socket], conexao: socket.socket, nome: str) -> None:
     print(f"\n{nome} conectado.")
 
     if(nome != nome_admin):
@@ -34,7 +34,7 @@ def encaminhar_mensagem(usuarios, conexao, nome):
             usuarios[nome_admin].send(f"{nome} desconectou".encode())
 
 # Função para iniciar o servidor
-def iniciar_servidor(usuarios = {}):
+def iniciar_servidor(usuarios: dict[str : socket.socket] = {}) -> None:
     server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     server_socket.bind(ADDR)
     server_socket.listen(total_usuarios)
