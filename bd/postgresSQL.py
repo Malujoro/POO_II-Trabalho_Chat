@@ -104,7 +104,7 @@ class PostgressDB:
     """
     Método select_all:
 
-    O comando executado 'SELECT * FROM messeges' seleciona todas as linhas da tabela messages.
+    O comando executado 'SELECT * FROM messages' seleciona todas as linhas da tabela messages.
     No for, é exibido todas as linhas resultante.
     """
 
