@@ -7,7 +7,7 @@ Importações:
 """
 import os
 from postgresSQL import *
-from bd.redis import *
+from redis_bd import *
 
 
 def connect_postgress() -> PostgressDB:
@@ -42,15 +42,15 @@ def connect_redis() -> RedisDB:
         print(f"Erro ao conectar ao Redis: {e}")
     
 
-def wait_migrations(redis: RedisDB, postgres: PostgressDB) -> None:
+def wait_migrations(redisDb: RedisDB, postgres: PostgressDB) -> None:
     """
     Função para migrar os dados da fila de mensagens do Redis para o banco Postgres
     Após efetuar a transferência, remove a mensagem do Redis (para evitar duplicatas)
 
-    redis (RedisDB): Instância do Redis
+    redisDb (RedisDB): Instância do Redis
     postgres (PostgressDB): Instância do Postgres
     """
-    messages = redis.list_messages()
+    messages = redisDb.list_messages()
     
     for msg in messages:
         
@@ -60,7 +60,7 @@ def wait_migrations(redis: RedisDB, postgres: PostgressDB) -> None:
 
         try:
             postgres.insert([(role, message)])
-            redis.delete_message(key)
+            redisDb.delete_message(key)
         except Exception as e:
             print(f"Erro ao processar mensagem '{key}': {e}")
 
@@ -73,7 +73,7 @@ Utiliza a função wait_migrations para efetuar a migração
 """
 if(__name__ == "__main__"):
     postgres = connect_postgress()
-    redis = connect_redis()
+    redisDb = connect_redis()
     
     while True:
-        wait_migrations(redis, postgres)
+        wait_migrations(redisDb, postgres)

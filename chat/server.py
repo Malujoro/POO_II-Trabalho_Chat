@@ -1,10 +1,11 @@
 import socket
 import threading
-from variaveis import *
+from .variaveis import *
+from bd.postgresSQL import PostgressDB
 
 
 # Função para encaminhar as mensagens entre o funcionário e o cliente
-def encaminhar_mensagem(usuarios: dict[str : socket.socket], conexao: socket.socket, nome: str) -> None:
+def encaminhar_mensagem(usuarios: dict[str : socket.socket], conexao: socket.socket, nome: str, banco: PostgressDB) -> None:
     print(f"\n{nome} conectado.")
 
     if(nome != nome_admin):
@@ -24,6 +25,7 @@ def encaminhar_mensagem(usuarios: dict[str : socket.socket], conexao: socket.soc
 
             if(len(destino) > 0):
                 destino[0][1].send(mensagem.encode())
+                banco.insert([(nome, mensagem)])
                 print(f"\n{nome}: {mensagem}")
 
     finally:
@@ -35,6 +37,7 @@ def encaminhar_mensagem(usuarios: dict[str : socket.socket], conexao: socket.soc
 
 # Função para iniciar o servidor
 def iniciar_servidor(usuarios: dict[str : socket.socket] = {}) -> None:
+    banco = PostgressDB()
     server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     server_socket.bind(ADDR)
     server_socket.listen(total_usuarios)
@@ -45,7 +48,7 @@ def iniciar_servidor(usuarios: dict[str : socket.socket] = {}) -> None:
             client_socket, _ = server_socket.accept()
             nome_usuario = client_socket.recv(1024).decode()
             usuarios[nome_usuario] = client_socket
-            thread = threading.Thread(target=encaminhar_mensagem, args=(usuarios, client_socket, nome_usuario), daemon=True)
+            thread = threading.Thread(target=encaminhar_mensagem, args=(usuarios, client_socket, nome_usuario, banco), daemon=True)
             thread.start()
         except KeyboardInterrupt:
             break

@@ -86,7 +86,9 @@ class PostgressDB:
     Método insert:
 
     Parâmetro:
-    dado (lista[tupla[str, str]]): uma lsita de tuplas, na qual cada uma contém dois elementos do tipo string.
+    dado (lista[tupla[str, str]]): uma lista de tuplas, na qual cada uma contém dois elementos do tipo string.
+        - O primeiro elemento corresponde ao nome de quem enviou a mensagem
+        - O segundo elemento corresponde a mensagem que foi enviada
 
     Verifica se a lista não está vazia.
     Se não, o comando 'executemany' insere multiplas linhas de uma vez só (as duas strings passadas em cada tupla da lista).

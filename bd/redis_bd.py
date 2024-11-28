@@ -101,14 +101,16 @@ if(__name__ == "__main__"):
     Teste de funcionalidades. 
     Exibe todas as mensagens do banco.
     """
-    redis = RedisDB()
+    redisDb = RedisDB()
 
-    # redis.create_message("usuario", "mensagem1")
-    # redis.create_message("funcionario", "mensagem2")
-    # redis.create_message("funcionario", "mensagem3")
-    # redis.create_message("funcionario", "mensagem4")
-    mensagens = redis.list_messages()
-    for msg in mensagens:
-        print(msg)
+    # redisDb.create_message("usuario", "mensagem1")
+    # redisDb.create_message("funcionario", "mensagem2")
+    # redisDb.create_message("funcionario", "mensagem3")
+    # redisDb.create_message("funcionario", "mensagem4")
 
-    redis.close()
+    # redisDb.clear_all_data()
+    mensagens = redisDb.list_messages()
+    # for msg in mensagens:
+    #     print(msg)
+
+    redisDb.close()
