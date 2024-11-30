@@ -22,7 +22,7 @@ Com a integração em tempo real, os atendentes podem fornecer informações atu
 1. Clone o repositório:
 '''bash
 git clone https://github.com/Malujoro/POO_II-Trabalho_Final.git
-cd POO_II-Trabalho_Final
+cd POO_II-Trabalho_Final'''
 
 
    
