@@ -35,6 +35,7 @@ pip install -r requirements.txt
 ```
 
 ## Contribuidores
-
+| [<img loading="lazy" src="https://avatars.githubusercontent.com/u/37356058?v=4" width=115><br><sub>Alef Cauan Sousa Rodrigues</sub>](https://github.com/alefCauan) |  [<img loading="lazy" src="https://avatars.githubusercontent.com/u/30351153?v=4" width=115><br><sub>Áurea Letícia Carvalho Macedo</sub>](https://github.com/aureamcd) |  [<img loading="lazy" src="https://avatars.githubusercontent.com/u/30351153?v=4" width=115><br><sub>Gabriel Alves de Freitas</sub>](https://github.com/gabreudev) 
+| :---: | :---: | :---: |
 
 
