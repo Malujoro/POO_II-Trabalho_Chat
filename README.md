@@ -26,6 +26,21 @@ Com a integração em tempo real, os atendentes podem fornecer informações atu
 ```bash
 git clone https://github.com/Malujoro/POO_II-Trabalho_Final.git
 cd POO_II-Trabalho_Final
+```
 
+2. Instale as dependências:
+O arquivo requirements.txt contém todas as dependências necessárias para rodar o projeto. Para instalar as dependências, execute:
+```bash
+pip install -r requirements.txt
+```
 
-   
+## Contribuidores
+
+| [<img loading="lazy" src="https://avatars.githubusercontent.com/u/37356058?v=4" width=115><br><sub>Alef Cauan Sousa Rodrigues</sub>](https://github.com/alefCauan) 
+|  [<img loading="lazy" src="https://avatars.githubusercontent.com/u/30351153?v=4" width=115><br><sub>Áurea Letícia Carvalho Macedo</sub>](https://github.com/aureamcd) 
+|  [<img loading="lazy" src="https://avatars.githubusercontent.com/u/30351153?v=4" width=115><br><sub>Gabriel Alves de Freitas</sub>](https://github.com/gabreudev) 
+|  [<img loading="lazy" src="https://avatars.githubusercontent.com/u/30351153?v=4" width=115><br><sub>Márcio Roberto de Brito Rodrigues</sub>](https://github.com/MarcioRobt0) 
+|  [<img loading="lazy" src="https://avatars.githubusercontent.com/u/30351153?v=4" width=115><br><sub>Mateus da Rocha Sousa</sub>](https://github.com/Malujoro) 
+|  [<img loading="lazy" src="https://avatars.githubusercontent.com/u/8989346?v=4" width=115><br><sub>Viviany da Silva Araújo</sub>](https://github.com/VivySilva) |
+| :---: | :---: | :---: |
+
