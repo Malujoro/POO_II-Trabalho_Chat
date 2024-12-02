@@ -1,6 +1,8 @@
 # ChatMed: Comunicação Simples e Direta
 Um módulo de chat eficiente para farmácias, integrando atendimento ao cliente em tempo real.
 
+![Python](https://img.shields.io/badge/Python-3.12-blue) ![Docker](https://img.shields.io/badge/Docker-Compatible-blue)
+
 ## Descrição do Projeto
 O chat é um módulo do sistema de gerenciamento de farmácias, projetado para facilitar a comunicação direta entre clientes e funcionários. Ele permite que os clientes tirem dúvidas sobre medicamentos, como contraindicações, formas de uso, formas de pagamento, informações de reserva e entrega, dentre outras. 
 
