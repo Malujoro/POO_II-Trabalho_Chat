@@ -1,4 +1,4 @@
-ChatMed: Comunicação Simples e Direta
+# ChatMed: Comunicação Simples e Direta
 Um módulo de chat eficiente para farmácias, integrando atendimento ao cliente em tempo real.
 
 ## Descrição do Projeto
