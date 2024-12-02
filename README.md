@@ -10,14 +10,14 @@ Através de uma interface amigável, o chat proporciona uma interação eficient
 
 Com a integração em tempo real, os atendentes podem fornecer informações atualizadas sobre a disponibilidade de medicamentos e apoiar os clientes durante o processo de compra, incluindo a realização de reservas de medicamentos para retirada física.
 
-## Funcionalidades principais
-- Comunicação em tempo real entre clientes e atendentes.
-- Suporte para dúvidas sobre medicamentos, como indicações, contraindicações e formas de uso.
-- Ajuda na realização de reservas de medicamentos.
-- Armazenamento do histórico de mensagens no banco de dados.
-- Possibilidade de consultar a disponibilidade de produtos diretamente durante o chat.
-- Horário de atendimento: das 6h às 22h.
+## Status do Projeto
 
+![Build Status](https://github.com/Malujoro/POO_II-Trabalho_Final/actions/workflows/main.yml/badge.svg)
+![Coverage](https://codecov.io/gh/Malujoro/POO_II-Trabalho_Final/branch/main/graph/badge.svg)
+![Versão](https://img.shields.io/github/v/release/Malujoro/POO_II-Trabalho_Final)
+
+
+## Funcionalidades principais
 | Funcionalidade                          | Descrição                                                                 |
 |-----------------------------------------|---------------------------------------------------------------------------|
 | Comunicação em tempo real               | Permite trocas instantâneas de mensagens entre clientes e atendentes.     |
