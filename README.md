@@ -77,7 +77,8 @@ Essas tecnologias foram escolhidas para garantir a compatibilidade com diversas 
 ---
 
 ## 📄 Licença
-
+Este projeto está licenciado sob a [Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0)](https://creativecommons.org/licenses/by-nc/4.0/).  
+Isso significa que você pode usar, modificar e compartilhar o projeto, mas **não é permitido utilizá-lo para fins comerciais** sem minha permissão prévia.  
 
 ---
 
