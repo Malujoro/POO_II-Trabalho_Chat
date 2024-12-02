@@ -46,12 +46,29 @@ sudo docker compose up
 4. Rode o script.py
 ```bash
 python script.py
-``` 
+```
+
+## 🛠️ Tecnologias Aplicadas
+
+Este projeto foi desenvolvido utilizando uma combinação de tecnologias modernas para garantir eficiência, escalabilidade e simplicidade no processo de comunicação. Abaixo estão as principais tecnologias aplicadas:
+
+| Tecnologia           | Descrição                                                                 |
+|-----------------------|---------------------------------------------------------------------------|
+| 🐍 **Python 3.12**    | Linguagem de programação principal utilizada para construir o sistema.   |
+| 🐋 **Docker**         | Ferramenta de contêinerização para padronizar e simplificar a execução.  |
+| 📦 **Docker Compose** | Gerenciador de múltiplos contêineres para uma configuração simplificada. |
+
+Essas tecnologias foram escolhidas para garantir a compatibilidade com diversas plataformas e facilitar a escalabilidade do sistema em projetos futuros.
+
 
 ## 👥 Contribuidores
 | [<img loading="lazy" src="https://avatars.githubusercontent.com/u/149737667?v=4" width=115><br><sub>Alef Cauan Sousa Rodrigues</sub>](https://github.com/alefCauan) | [<img loading="lazy" src="https://avatars.githubusercontent.com/u/157396271?v=4" width=115><br><sub>Áurea Letícia Carvalho Macedo</sub>](https://github.com/aureamcd) | [<img loading="lazy" src="https://avatars.githubusercontent.com/u/110724864?v=4" width=115><br><sub>Gabriel Alves de Freitas</sub>](https://github.com/gabreudev) |
 | :---: | :---: | :---: |
 | [<img loading="lazy" src="https://avatars.githubusercontent.com/u/157633101?v=4" width=115><br><sub>Márcio Roberto de Brito Rodrigues</sub>](https://github.com/MarcioRobt0) | [<img loading="lazy" src="https://avatars.githubusercontent.com/u/45736178?v=4" width=115><br><sub>Mateus da Rocha Sousa</sub>](https://github.com/Malujoro) | [<img loading="lazy" src="https://avatars.githubusercontent.com/u/77069795?v=4" width=115><br><sub>Viviany da Silva Araújo</sub>](https://github.com/VivySilva) |
 
+## 📄 Licença
 
 
+## 📨 Contato
+
+Em caso de dúvidas ou sugestões, entre em contato com qualquer um dos contribuidores pelo GitHub.
