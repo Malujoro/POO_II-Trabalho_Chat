@@ -9,6 +9,7 @@ O chat é um módulo do sistema de gerenciamento de farmácias, projetado para f
 Através de uma interface amigável, o chat proporciona uma interação eficiente entre clientes e atendentes. O banco de dados do sistema armazena o histórico de mensagens trocadas entre as partes, garantindo que o atendimento seja registrado e possa ser consultado posteriormente, caso necessário. 
 
 Com a integração em tempo real, os atendentes podem fornecer informações atualizadas sobre a disponibilidade de medicamentos e apoiar os clientes durante o processo de compra, incluindo a realização de reservas de medicamentos para retirada física.
+---
 
 ## ⚙️ Funcionalidades principais
 | Funcionalidade                          | Descrição                                                                 |
