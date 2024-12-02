@@ -6,7 +6,7 @@ Um módulo de chat eficiente para farmácias, integrando atendimento ao cliente 
 ---
 
 ## 🚀 Descrição do Projeto
-O ChatMed é um módulo do sistema de gerenciamento de farmácias, projetado para facilitar a comunicação direta entre clientes e funcionários. Ele permite que os clientes tirem dúvidas sobre medicamentos, como contraindicações, formas de uso, formas de pagamento, informações de reserva e entrega, dentre outras. 
+O ChatMed é um módulo do sistema de gerenciamento de farmácias, projetado para facilitar a comunicação direta entre clientes e funcionários. Ele permite que os clientes tirem dúvidas sobre medicamentos, como contraindicações e formas de uso, formas de pagamento, informações de reserva e entrega, dentre outras. 
 
 Através de uma interface amigável, o chat proporciona uma interação eficiente entre clientes e atendentes. O banco de dados do sistema armazena o histórico de mensagens trocadas entre as partes, garantindo que o atendimento seja registrado e possa ser consultado posteriormente, caso necessário. 
 
