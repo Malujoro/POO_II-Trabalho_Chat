@@ -1,7 +1,7 @@
 # 💬 ChatMed: Comunicação Simples e Direta
 Um módulo de chat eficiente para farmácias, integrando atendimento ao cliente em tempo real.
 
-![Python](https://img.shields.io/badge/Python-3.12-blue) ![Docker](https://img.shields.io/badge/Docker-Compatible-blue) ![Status](https://img.shields.io/badge/status-Finalizado-brightgreen)
+![Python](https://img.shields.io/badge/Python-3.12-blue) ![Docker](https://img.shields.io/badge/Docker-Compatible-blue) ![Status](https://img.shields.io/badge/status-Em%20Desenvolvimento-yellow)
 
 ---
 
