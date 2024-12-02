@@ -31,7 +31,7 @@ Com a integração em tempo real, os atendentes podem fornecer informações atu
 * Docker e Docker Compose instalados
 * Acesso à internet para clonar o repositório e instalar dependências
 
---
+----
 
 ### Passos para configurar
 1. Clone o repositório:
