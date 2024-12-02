@@ -78,10 +78,24 @@ Essas tecnologias foram escolhidas para garantir a compatibilidade com diversas 
 
 ## 📄 Licença
 Este projeto está licenciado sob a [Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0)](https://creativecommons.org/licenses/by-nc/4.0/).  
-Isso significa que você pode usar, modificar e compartilhar o projeto, mas **não é permitido utilizá-lo para fins comerciais** sem minha permissão prévia.  
+Isso significa que você pode usar, modificar e compartilhar o projeto, mas **não é permitido utilizá-lo para fins comerciais** sem nossa permissão prévia.  
+Consulte a licença para mais informações.
 
 ---
 
 ## 📨 Contato
 
-Em caso de dúvidas ou sugestões, entre em contato com qualquer um dos contribuidores pelo GitHub.
+## 📬 Contato
+Caso tenha dúvidas ou sugestões, você pode entrar em contato diretamente com os contribuidores do projeto:
+
+| Contribuidor                              | GitHub Link                                                             |
+|-------------------------------------------|-------------------------------------------------------------------------|
+| Alef Cauan Sousa Rodrigues                | [Perfil no GitHub](https://github.com/alefCauan)                        |
+| Áurea Letícia Carvalho Macedo             | [Perfil no GitHub](https://github.com/aureamcd)                         |
+| Gabriel Alves de Freitas                  | [Perfil no GitHub](https://github.com/gabreudev)                        |
+| Márcio Roberto de Brito Rodrigues         | [Perfil no GitHub](https://github.com/MarcioRobt0)                      |
+| Mateus da Rocha Sousa                     | [Perfil no GitHub](https://github.com/Malujoro)                         |
+| Viviany da Silva Araújo                   | [Perfil no GitHub](https://github.com/VivySilva)                        |
+
+Ou visite diretamente o repositório do projeto no GitHub:  
+👉 [ChatMed - Repositório Oficial](https://github.com/Malujoro/POO_II-Trabalho_Final)
