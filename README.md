@@ -18,6 +18,15 @@ Com a integração em tempo real, os atendentes podem fornecer informações atu
 - Possibilidade de consultar a disponibilidade de produtos diretamente durante o chat.
 - Horário de atendimento: das 6h às 22h.
 
+| Funcionalidade                          | Descrição                                                                 |
+|-----------------------------------------|---------------------------------------------------------------------------|
+| Comunicação em tempo real               | Permite trocas instantâneas de mensagens entre clientes e atendentes.     |
+| Suporte para dúvidas sobre medicamentos | Responde perguntas sobre indicações, contraindicações e formas de uso.    |
+| Realização de reservas                  | Ajuda clientes a reservar medicamentos diretamente no chat.               |
+| Histórico de mensagens                  | Registra interações para futuras consultas e auditorias.                  |
+| Consulta de disponibilidade de produtos | Verifica e informa estoque diretamente durante a conversa.                |
+
+
 ## Instalação e configuração
 ### Pré-requisitos
 * Python 3.12 ou superior
