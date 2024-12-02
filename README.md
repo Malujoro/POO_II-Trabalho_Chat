@@ -44,7 +44,11 @@ python -m venv chatMed
 source chatMed/bin/activate
 pip install -r requirements.txt
 ```
-3. Ative o docker compose
+3. Instale a biblioteca redis
+```bash
+pip install redis
+```
+3. Inicie o docker compose
 ```bash
 sudo docker compose up
 ```
@@ -82,8 +86,6 @@ Isso significa que você pode usar, modificar e compartilhar o projeto, mas **n�
 Consulte a licença para mais informações.
 
 ---
-
-## 📨 Contato
 
 ## 📬 Contato
 Caso tenha dúvidas ou sugestões, você pode entrar em contato diretamente com os contribuidores do projeto:
