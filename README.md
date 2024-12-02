@@ -12,9 +12,7 @@ Com a integração em tempo real, os atendentes podem fornecer informações atu
 
 ## Status do Projeto
 
-![Build Status](https://github.com/Malujoro/POO_II-Trabalho_Final/actions/workflows/main.yml/badge.svg)
-![Coverage](https://codecov.io/gh/Malujoro/POO_II-Trabalho_Final/branch/main/graph/badge.svg)
-![Versão](https://img.shields.io/github/v/release/Malujoro/POO_II-Trabalho_Final)
+![Status](https://img.shields.io/badge/status-Finalizado-brightgreen)
 
 
 ## Funcionalidades principais
