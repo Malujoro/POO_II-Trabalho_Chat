@@ -72,7 +72,7 @@ class RedisDB:
             'timestamp': timestamp
         })
 
-    def list_messages(self) -> list[dict[str: str]]:
+    def list_messages(self, quant: int = 100_000) -> list[dict[str: str]]:
         """
         Método list_messages:
 
@@ -89,14 +89,10 @@ class RedisDB:
         cursor = 0
         pattern = "message:*"
 
-        while True:
-            cursor, keys = self._client.scan(
-                cursor=cursor, match=pattern, count=10)
-            for key in keys:
-                messages.append(self._client.hgetall(key))
-                print(messages[-1])
-            if cursor == 0:
-                break
+        cursor, keys = self._client.scan(
+            cursor=cursor, match=pattern, count=quant)
+        for key in keys:
+            messages.append(self._client.hgetall(key))
 
         return messages
 

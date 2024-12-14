@@ -1,7 +1,7 @@
 import socket
 import threading
 from .variaveis import *
-from bd.postgresSQL import PostgressDB
+from worker.postgresSQL import PostgressDB
 """
 Importações:
 

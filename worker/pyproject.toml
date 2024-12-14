@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "worker"
+version = "0.1.0"
+description = "Biblioteca para transferir mensagens do Redis para o Postgres"
+authors = ["Malujoro <mateus_rocha_sousa@hotmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+redis = "^5.2.1"
+psycopg2 = "^2.9.10"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

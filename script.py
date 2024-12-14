@@ -1,4 +1,5 @@
-from bd.redis_bd import *
+# from bd.redis_bd import *
+from worker.redis_bd import RedisDB
 from random import randint
 from chat.variaveis import *
 """
@@ -9,6 +10,10 @@ Importações:
 3. Importa as variáveis 'nome_cliente' e 'nome_admin'.
 """
 
+def generate_data(i):
+    usuarios = [nome_cliente, nome_admin]
+    return usuarios[randint(0, 1)], f"mensagem{i+1}"
+
 if __name__ == "__main__":
     """
     Bloco principal:
@@ -17,10 +22,11 @@ if __name__ == "__main__":
     Se sim, cria-se uma lista nomeada 'usuarios' contendo 'nome_cliente' e 'nome_admin' (são os nomes dos usuários).
     Cria uma instância do Redis que será usada para interagir com o banco de dados.
     """
-    usuarios = [nome_cliente, nome_admin]
     redisDB = RedisDB()
 
-    for i in range(1000000):
+    # redisDB.clear_all_data()
+
+    for i in range(1_000_000):
         """
         For:
 
@@ -28,4 +34,5 @@ if __name__ == "__main__":
         Seleciona um usuário aleatório da lista de usuários, sendo 0 para cliente e 1 para funcionário.
         Chama a função do arquivo redisDB.py.
         """
-        redisDB.create_message(usuarios[randint(0, 1)], f"mensagem{i+1}")
+        data = generate_data(i)
+        redisDB.create_message(data[0], data[1])
