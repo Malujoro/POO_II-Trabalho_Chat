@@ -100,7 +100,7 @@ class RedisDB:
 
         return messages
 
-    def delete_message(self, key: str) -> None:
+    def delete_message(self, keys: list[str]) -> None:
         """
         Método delete_message:
 
@@ -109,7 +109,7 @@ class RedisDB:
 
         Exclui uma mensagem mandando por parâmetro do Redis.
         """
-        self._client.delete(key)
+        self._client.delete(*keys)
 
     def clear_all_data(self) -> None:
         """

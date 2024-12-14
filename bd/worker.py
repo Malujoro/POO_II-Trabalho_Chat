@@ -51,6 +51,8 @@ def wait_migrations(redisDb: RedisDB, postgres: PostgressDB) -> None:
     postgres (PostgressDB): Instância do Postgres
     """
     messages = redisDb.list_messages()
+    messages_to_insert = [] 
+    keys_to_delete = []
 
     for msg in messages:
 
@@ -58,9 +60,12 @@ def wait_migrations(redisDb: RedisDB, postgres: PostgressDB) -> None:
         message = msg["message"]
         key = f"message:{role}:{msg['timestamp']}"
 
+        keys_to_delete.append(key)
+        messages_to_insert.append((role, message))
+
         try:
-            postgres.insert([(role, message)])
-            redisDb.delete_message(key)
+            postgres.insert(messages_to_insert)
+            redisDb.delete_message(keys_to_delete)
         except Exception as e:
             print(f"Erro ao processar mensagem '{key}': {e}")
 
