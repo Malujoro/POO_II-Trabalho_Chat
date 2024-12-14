@@ -45,7 +45,7 @@ def connect_redis() -> RedisDB:
 def wait_migrations(redisDb: RedisDB, postgres: PostgressDB) -> None:
     """
     Função para migrar os dados da fila de mensagens do Redis para o banco Postgres
-    Após efetuar a transferência, remove a mensagem do Redis (para evitar duplicatas)
+    Após efetuar a transferência, remove as mensagem do Redis (para evitar duplicatas)
 
     redisDb (RedisDB): Instância do Redis
     postgres (PostgressDB): Instância do Postgres

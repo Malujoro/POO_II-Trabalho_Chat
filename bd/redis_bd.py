@@ -105,9 +105,9 @@ class RedisDB:
         Método delete_message:
 
         -> Parâmetro:
-        key (str): a chave da mensagem a ser excluída.
+        key (list[str]): as chaves das mensagems a serem excluídas.
 
-        Exclui uma mensagem mandando por parâmetro do Redis.
+        Exclui a lista de mensagems desempacotadas mandando por parâmetro do Redis.
         """
         self._client.delete(*keys)
 
