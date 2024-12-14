@@ -42,7 +42,7 @@ class Worker:
             print(f"Erro ao conectar ao Redis: {e}")
 
 
-    def wait_migrations(self, total_items: int, batch_size: int = 100_000) -> None:
+    def wait_migrations(self, total_items: int, batch_size: int = 100_000, num_threads: int = 1) -> None:
         """
         Função para migrar os dados da fila de mensagens do Redis para o banco Postgres
         Após efetuar a transferência, remove as mensagem do Redis (para evitar duplicatas)
@@ -55,26 +55,29 @@ class Worker:
 
             current_batch_size = min(batch_size, total_items - batch_num * batch_size)
 
-            messages = self._redisDB.list_messages(current_batch_size)
+            messages = self._redisDB.list_messages(current_batch_size, num_threads)
 
             print(f"{len(messages)} mensagens no batch {batch_num + 1}")
 
-            messages_to_insert = []
-            keys_to_delete = []
-            key = "Não há mensagens"
+            if(len(messages) == 0):
+                print("Não há mensagens")
+            else:
+                messages_to_insert = []
+                keys_to_delete = []
+                key = "Não há mensagens"
 
-            for msg in messages:
-                role = msg["role"]
-                message = msg["message"]
-                key = f"message:{role}:{msg['timestamp']}"
+                for msg in messages:
+                    role = msg["role"]
+                    message = msg["message"]
+                    key = f"message:{role}:{msg['timestamp']}"
 
-                keys_to_delete.append(key)
-                messages_to_insert.append((role, message))
+                    keys_to_delete.append(key)
+                    messages_to_insert.append((role, message))
 
-            try:
-                self._postgres.insert(messages_to_insert)
-                self._redisDB.delete_message(keys_to_delete)
-            except Exception as e:
-                print(f"Erro ao processar mensagem '{key}': {e}")
+                try:
+                    self._postgres.insert(messages_to_insert)
+                    self._redisDB.delete_message(keys_to_delete)
+                except Exception as e:
+                    print(f"Erro ao processar mensagem '{key}': {e}")
 
-            print(f"Batch {batch_num + 1} finalizado\n")
+                print(f"Batch {batch_num + 1} finalizado\n")

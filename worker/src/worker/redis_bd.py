@@ -6,6 +6,7 @@ Importação:
 """
 import redis
 from datetime import datetime
+from multiprocessing.pool import ThreadPool
 
 
 class RedisDB:
@@ -72,13 +73,18 @@ class RedisDB:
             'timestamp': timestamp
         })
 
-    def list_messages(self, quant: int = 100_000) -> list[dict[str: str]]:
+
+    def fetch_data(self, key):
+        return self._client.hgetall(key)
+    
+
+    def list_messages(self, quant: int = 100_000, num_threads: int = 1) -> list[dict[str: str]]:
         """
         Método list_messages:
 
         -> Variáveis:
         messages (lista): armazena todas as mensagens recuperadas do Redis.
-        cursor (int): mantem o estado da iteração.
+        cursor (int): mantém o estado da iteração.
         pattern (str): define quais chaves o comando SCAN deve procurar.
 
         Procura chaves de 10 em 10 que correspondem ao pattern
@@ -89,10 +95,19 @@ class RedisDB:
         cursor = 0
         pattern = "message:*"
 
-        cursor, keys = self._client.scan(
-            cursor=cursor, match=pattern, count=quant)
-        for key in keys:
-            messages.append(self._client.hgetall(key))
+        while True:
+            cursor, keys = self._client.scan(cursor=cursor, match=pattern, count=quant)
+
+            if(not keys):
+                break
+
+            with ThreadPool(num_threads) as pool:
+                batch_results = pool.map(self.fetch_data, keys)
+
+            messages.extend(batch_results)
+
+            if(cursor == 0):
+                break
 
         return messages
 

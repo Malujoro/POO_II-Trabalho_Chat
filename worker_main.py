@@ -15,4 +15,4 @@ if (__name__ == "__main__"):
     """
     worker = Worker()
     while True:
-        worker.wait_migrations(1_000_000)
+        worker.wait_migrations(1_000_000, num_threads=4)
