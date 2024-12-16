@@ -1,7 +1,7 @@
 from worker import Worker
 """
 Importações:
-
+Biblioteca com as funções do Worker
 """
 
 
@@ -10,9 +10,17 @@ if (__name__ == "__main__"):
     Bloco principal:
 
     Verifica se o worker está sendo executado diretamente. 
-    Se sim, cria-se uma instância dos bancos que serão utilizados para a transferência (Postgres e Redis)
-    Utiliza a função wait_migrations para efetuar a migração
+    Se sim, cria-se uma instância do worker que fará a migração
     """
+
     worker = Worker()
+
     while True:
-        worker.wait_migrations(1_000_000, num_threads=4)
+        try:
+            start = input("Inicializar worker? ")
+            if(start != "0"):
+                worker.wait_migrations(1_000_000, batch_size = 100_000, num_threads = 4)
+            break
+        except:
+            print("Reinicializando worker")
+            continue

@@ -1,4 +1,3 @@
-# from bd.redis_bd import *
 from worker.redis_bd import RedisDB
 from random import randint
 from chat.variaveis import *
@@ -52,25 +51,14 @@ if __name__ == "__main__":
     Calcula a quantidade de pacotes necessários.
     """
     redisDB = RedisDB()
-    num_threads = 4
-    total_records = 1_000_000
-    batch_size = 100_000
 
     # redisDB.clear_all_data()
 
-    # with ThreadPool(num_threads) as pool:
-    #     batch_results = pool.map(generate_data, range(total_records))
+    print(f"Quantidade de registros: {redisDB.count_records()}")
 
-    # for i in range(total_records):
-    #     """
-    #     For:
-
-    #     Inicia um loop de 1 milhão de vezes.
-    #     Seleciona um usuário aleatório da lista de usuários, sendo 0 para cliente e 1 para funcionário.
-    #     Chama a função do arquivo redisDB.py.
-    #     """
-    #     data = generate_data(i)
-    #     redisDB.create_message(data[0], data[1])
+    num_threads = 4
+    total_records = 1_000_000
+    batch_size = 100_000
 
     num_batches = (total_records + batch_size - 1) // batch_size
 
@@ -84,14 +72,14 @@ if __name__ == "__main__":
         """
         print(f"Batch {batch_num + 1}/{num_batches}")
 
-        current_batch_size = min(
-            batch_size, total_records - batch_num * batch_size)
+        current_batch_size = min(batch_size, total_records - batch_num * batch_size)
 
         with ThreadPool(num_threads) as pool:
             list_objects = pool.map(generate_data, range(current_batch_size))
 
         print(f"{len(list_objects)} mensagens no batch {batch_num + 1}")
 
+        # Enviar dados do lote para o Redis
         with ThreadPool(num_threads) as pool:
             pool.map(sender, list_objects)
 

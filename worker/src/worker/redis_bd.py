@@ -74,20 +74,30 @@ class RedisDB:
         })
 
 
-    def fetch_data(self, key):
+    def fetch_data(self, key: list[str]):
+        """
+        Método fetch_data:
+
+        -> Parâmetros:
+        key (lista): armazena todas as chaves.
+
+        Retorna a lista com as mensagens referentes a chave enviada.
+        """
         return self._client.hgetall(key)
     
 
-    def list_messages(self, quant: int = 100_000, num_threads: int = 1) -> list[dict[str: str]]:
+    def list_messages(self, quant: int = 100_000, num_threads: int = 1) -> list[dict[str, str]]:
         """
         Método list_messages:
 
         -> Variáveis:
         messages (lista): armazena todas as mensagens recuperadas do Redis.
         cursor (int): mantém o estado da iteração.
-        pattern (str): define quais chaves o comando SCAN deve procurar.
+        pattern (str): define o "molde" das chaves que o comando SCAN deve procurar.
+        remaining (int): define quantas mensagens ainda faltam ser buscadas.
+        keys (lista): define as chaves que serão buscadas pelo fetch_data.
 
-        Procura chaves de 10 em 10 que correspondem ao pattern
+        Procura chaves de 100.000 em 100.000 que correspondem ao pattern
         Adiciona na lista todos os valores armazenados no hash daquela chave.
         Retorna a lista com as mensagens encontradas.
         """
@@ -95,11 +105,14 @@ class RedisDB:
         cursor = 0
         pattern = "message:*"
 
-        while True:
+        while len(messages) < quant:
             cursor, keys = self._client.scan(cursor=cursor, match=pattern, count=quant)
 
             if(not keys):
                 break
+
+            remaining = quant - len(messages)
+            keys = keys[:remaining]
 
             with ThreadPool(num_threads) as pool:
                 batch_results = pool.map(self.fetch_data, keys)
@@ -121,6 +134,15 @@ class RedisDB:
         Exclui a lista de mensagems desempacotadas mandando por parâmetro do Redis.
         """
         self._client.delete(*keys)
+
+    def count_records(self) -> int:
+        """
+        Método count_records:
+
+        Retorna o número total de registros armazenados no Redis.
+        """
+        return self._client.dbsize()
+
 
     def clear_all_data(self) -> None:
         """
